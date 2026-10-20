@@ -1,0 +1,11 @@
+[package]
+name = "tenancy"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+contracts = { path = "../contracts" }
+permissions = { path = "../permissions" }
+uuid = { version = "1.0", features = ["serde", "v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }

@@ -1,0 +1,12 @@
+[package]
+name = "app-core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+contracts = { path = "../contracts" }
+permissions = { path = "../permissions" }
+tenancy = { path = "../tenancy" }
+auth = { path = "../auth" }
+serde = { version = "1.0", features = ["derive"] }
+thiserror = "1.0"

@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
+          POSTGRES_DB: admin_template_dev
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: dtolnay/rust-toolchain@stable
+    - uses: Swatinem/rust-cache@v2
+    - name: Install sqlx-cli
+      run: cargo install sqlx-cli --no-default-features --features postgres --version 0.8.2 || true
+    - name: Check formatting
+      run: cargo fmt -- --check
+    - name: Clippy
+      run: cargo clippy --all-targets --all-features -- -D warnings
+    - name: Build
+      run: cargo build --workspace
+    - name: Test
+      run: cargo test --workspace

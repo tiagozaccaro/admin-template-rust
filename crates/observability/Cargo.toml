@@ -1,0 +1,15 @@
+[package]
+name = "observability"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+uuid = { version = "1.0", features = ["v4"] }
+axum = { version = "0.7", optional = true }
+tower = { version = "0.4", optional = true }
+
+[features]
+default = []
+axum = ["dep:axum", "dep:tower"]

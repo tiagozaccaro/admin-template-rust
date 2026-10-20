@@ -1,0 +1,23 @@
+[workspace]
+resolver = "2"
+members = [
+    "apps/api",
+    "apps/web",
+    "apps/mobile",
+    "apps/worker",
+    "crates/config",
+    "crates/observability",
+    "crates/database",
+    "crates/contracts",
+    "crates/api-client",
+    "crates/auth",
+    "crates/permissions",
+    "crates/tenancy",
+    "crates/app-core",
+    "crates/ui",
+    "crates/ui-admin",
+    "crates/ui-ai",
+    "crates/ai-core",
+    "crates/ai-providers",
+    "crates/ai-agents",
+]
